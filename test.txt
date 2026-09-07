@@ -13,3 +13,4 @@ Si\
 Ca apparait bien dans \
 La liste des changes}
 Ajout d'une nouvelle ligne pour valider le test enfin quoi
+la plus petite partie d'un corps qui puisse axister a l'etat libre tout en conservant les proprietes physico-chimique a ce corps/
