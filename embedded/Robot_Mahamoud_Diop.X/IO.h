@@ -12,6 +12,7 @@
 #define LED_ORANGE_2 _LATK15
 #define LED_ROUGE_2 _LATA10
 #define LED_VERTE_2 _LATH3
+#define PWM_EN _LATJ10
 
 // Prototypes fonctions
 void InitIO();
