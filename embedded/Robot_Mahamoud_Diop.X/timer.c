@@ -11,10 +11,13 @@ unsigned char toggle = 0;
 void InitTimer1(void) {
     //Timer1 pour horodater les mesures (1ms)
     T1CONbits.TON = 0; // Disable Timer
-    T1CONbits.TCS = 0; //clock source = internal clock
-    IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
-    IEC0bits.T1IE = 1; // Enable Timer interrupt
-    T1CONbits.TON = 1; // Enable Timer
+   T1CONbits.TCS = 0; //clock source = internal clock
+     SetFreqTimer1() ;
+   IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
+   IEC0bits.T1IE = 1; // Enable Timer interrupt
+   T1CONbits.TON = 1; // Enable Timer
+    
+  
 }
 //Interruption du timer 1
 

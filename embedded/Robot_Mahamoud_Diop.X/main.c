@@ -85,7 +85,7 @@ int main(void) {
                 LED_BLANCHE_1 = 1;
             }
             
-            SetFreqTimer1(3.0) ;
+            
             // (Optionnel) Relancer une nouvelle séquence de conversion si ton code ne le fait pas ailleurs
             // ADC1StartConversionSequence();
         }
