@@ -3,15 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/ADC.c</file>
+            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/Robot_Mahamoud_Diop.mc3</file>
             <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/main.c</file>
+            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/IO.h</file>
             <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/PWM.c</file>
-            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/PWM.h</file>
-            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/robot.c</file>
+            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/timer.h</file>
+            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/ChipConfig.h</file>
+            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/IO.c</file>
             <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/robot.h</file>
             <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/timer.c</file>
-            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/ADC.c</file>
             <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/ADC.h</file>
-            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/timer.h</file>
+            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/robot.c</file>
+            <file>file:/C:/Github/IUT_Mahamoud_Malik_Diop_Massamba/embedded/Robot_Mahamoud_Diop.X/main.h</file>
         </group>
     </open-files>
 </project-private>
