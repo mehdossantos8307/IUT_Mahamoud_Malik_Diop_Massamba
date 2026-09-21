@@ -1,0 +1,77 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2907
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh17280\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 #include <xc.h>\
+#include "IO.h"\
+#include "PWM.h"\
+#include "robot.h"\
+#include "ToolBox.h"\
+#define PWMPER 24.0\
+\
+void InitPWM(void) \{\
+    PTCON2bits.PCLKDIV = 0b000; //Divide by 1\
+    PTPER = 100 * PWMPER; //\uc0\u65533 Priode en pourcentage\
+    //\uc0\u65533 Rglage PWM moteur 1 sur hacheur 1\
+    IOCON1bits.PMOD = 0b11; //PWM I/O pin pair is in the True Independent Output mode\
+    IOCON1bits.PENL = 1;\
+    IOCON1bits.PENH = 1;\
+    FCLCON1 = 0x0003; //\uc0\u65533 Dsactive la gestion des faults\
+    //\uc0\u65533 Rglage PWM moteur 2 sur hacheur 2\
+    IOCON2bits.PMOD = 0b11; //PWM I/O pin pair is in the True Independent Output mode\
+    IOCON2bits.PENL = 1;\
+    IOCON2bits.PENH = 1;\
+    FCLCON2 = 0x0003; //\uc0\u65533 Dsactive la gestion des faults\
+    /* Enable PWM Module */\
+    PTCONbits.PTEN = 1;\
+\}\
+double talon = 10;\
+float acceleration = 5;\
+\
+void PWMUpdateSpeed() \{\
+    // Cette fonction est appelee sur timer et permet de suivre des rampes d acceleration\
+    if (robotState.vitesseGaucheCommandeCourante < robotState.vitesseGaucheConsigne)\
+        robotState.vitesseGaucheCommandeCourante = Min(\
+            robotState.vitesseGaucheCommandeCourante + acceleration,\
+            robotState.vitesseGaucheConsigne);\
+    if (robotState.vitesseGaucheCommandeCourante > robotState.vitesseGaucheConsigne)\
+        robotState.vitesseGaucheCommandeCourante = Max(\
+            robotState.vitesseGaucheCommandeCourante - acceleration,\
+            robotState.vitesseGaucheConsigne);\
+    if (robotState.vitesseGaucheCommandeCourante > 0) \{\
+        PDC1 = robotState.vitesseGaucheCommandeCourante * PWMPER + talon;\
+        SDC1 = talon;\
+    \} else \{\
+        PDC1 = talon;\
+        SDC1 = -robotState.vitesseGaucheCommandeCourante * PWMPER + talon;\
+    \}\
+    if (robotState.vitesseDroiteCommandeCourante < robotState.vitesseDroiteConsigne)\
+        robotState.vitesseDroiteCommandeCourante = Min(\
+            robotState.vitesseDroiteCommandeCourante + acceleration,\
+            robotState.vitesseDroiteConsigne);\
+    if (robotState.vitesseDroiteCommandeCourante > robotState.vitesseDroiteConsigne)\
+        robotState.vitesseDroiteCommandeCourante = Max(\
+            robotState.vitesseDroiteCommandeCourante - acceleration,\
+            robotState.vitesseDroiteConsigne);\
+    if (robotState.vitesseDroiteCommandeCourante >= 0) \{\
+        PDC2 = robotState.vitesseDroiteCommandeCourante * PWMPER + talon;\
+        SDC2 = talon;\
+    \} else \{\
+        PDC2 = talon;\
+        SDC2 = -robotState.vitesseDroiteCommandeCourante * PWMPER + talon;\
+    \}\
+\}\
+\
+void PWMSetSpeedConsigne(unsigned char moteur, float vitesseEnPourcents)\
+\{\
+    if (moteur == MOTEUR_GAUCHE) \{\
+        robotState.vitesseGaucheConsigne = vitesseEnPourcents;\
+    \} else if (moteur == MOTEUR_DROITE) \{\
+        robotState.vitesseDroiteConsigne = vitesseEnPourcents;\
+\
+    \}\
+\}\
+}
