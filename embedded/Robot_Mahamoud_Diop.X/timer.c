@@ -6,6 +6,9 @@
 #include "IO.h" 
 #include "ChipConfig.h" 
 unsigned char toggle = 0; 
+
+
+
 //Initialisation d?un timer 16 bits 
 void InitTimer1(void) { 
 T1CONbits.TON = 0; 
@@ -90,9 +93,10 @@ void InitTimer4(void) {
     IFS1bits.T4IF = 0; 
     IEC1bits.T4IE = 1; 
 T4CONbits.TON = 1; 
-} 
+}
+
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) { 
 IFS1bits.T4IF = 0; 
-timestamp++; 
-OperatingSystemLoop(); 
+timestamp++;
+OperatingSystemLoop();       
 }

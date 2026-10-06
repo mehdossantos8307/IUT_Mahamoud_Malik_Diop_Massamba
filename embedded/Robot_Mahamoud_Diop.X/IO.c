@@ -20,6 +20,9 @@ void InitIO()
     // Configuration des sorties
 
     //******* LED ***************************
+    _TRISH0 = 1; // c le bouton
+    _TRISH1 = 1; // c le bouton
+    _TRISH2 = 1; // c le bouton
     _TRISJ6 = 0;  // LED Blanche 1
     _TRISJ5 = 0; //LED Bleue 1
     _TRISJ4 = 0; // LED Orange 1 
@@ -29,7 +32,8 @@ void InitIO()
     _TRISA9 = 0; //LED Bleue 2
     _TRISK15 = 0; // LED Orange 2 
     _TRISA10 = 0; // LED Rouge 2 
-    _TRISH3 = 0; // LED Verte 2 
+    _TRISH3 = 0; // LED Verte 2
+  
     
     
     _TRISJ10 = 0; // PWM EN
