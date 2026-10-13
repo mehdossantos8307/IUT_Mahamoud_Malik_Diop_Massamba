@@ -23,8 +23,8 @@ static uint8_t old3 = 0;
 unsigned int ADCValue0 = 0;
 unsigned int ADCValue1 = 0;
 unsigned int ADCValue2 = 0;
-unsigned int ADCValue4 = 0;
 unsigned int ADCValue3 = 0;
+unsigned int ADCValue4 = 0;
 
 unsigned char stateRobot;
 unsigned char nextStateRobot = 0;
@@ -45,10 +45,13 @@ void SetNextRobotStateInAutomaticMode() {
             robotState.distanceTelemetreCentre > 20 &&
             robotState.distanceTelemetreGauche < 30)
         positionObstacle = OBSTACLE_A_GAUCHE;
-    else if (robotState.distanceTelemetreCentre < 30)
+    else if (robotState.distanceTelemetreCentre < 35)
         positionObstacle = OBSTACLE_EN_FACE;
-    else
-        positionObstacle = PAS_D_OBSTACLE;
+    else if (robotState.distanceTelemetreExtremeGauche < 10)
+        positionObstacle = FROLEMENT_A_GAUCHE;
+    else if (robotState.distanceTelemetreExtremeDroite < 10)
+        positionObstacle = FROLEMENT_A_DROITE;
+    else positionObstacle = PAS_D_OBSTACLE;
 
     if (positionObstacle == PAS_D_OBSTACLE)
         nextStateRobot = STATE_AVANCE;
@@ -62,10 +65,7 @@ void SetNextRobotStateInAutomaticMode() {
         nextStateRobot = STATE_FROLEMENT_GAUCHE;
     else if (positionObstacle == FROLEMENT_A_DROITE)
         nextStateRobot = STATE_FROLEMENT_DROITE;
-    else if (robotState.distanceTelemetreExtremeGauche < 5)
-        positionObstacle = FROLEMENT_A_GAUCHE;
-    else if (robotState.distanceTelemetreExtremeDroite < 5)
-        positionObstacle = FROLEMENT_A_DROITE;
+   
 
 
     if (nextStateRobot != stateRobot - 1)
@@ -100,8 +100,8 @@ void OperatingSystemLoop(void) {
             break;
 
         case STATE_TOURNE_GAUCHE:
-            PWMSetSpeedConsigne(MOTEUR_DROITE, 20);
-            PWMSetSpeedConsigne(MOTEUR_GAUCHE, -2);
+            PWMSetSpeedConsigne(MOTEUR_DROITE, 17);
+            PWMSetSpeedConsigne(MOTEUR_GAUCHE, 0);
             stateRobot = STATE_TOURNE_GAUCHE_EN_COURS;
             break;
 
@@ -110,8 +110,8 @@ void OperatingSystemLoop(void) {
             break;
 
         case STATE_TOURNE_DROITE:
-            PWMSetSpeedConsigne(MOTEUR_DROITE, -2);
-            PWMSetSpeedConsigne(MOTEUR_GAUCHE, 20);
+            PWMSetSpeedConsigne(MOTEUR_DROITE, 0);
+            PWMSetSpeedConsigne(MOTEUR_GAUCHE, 17);
             stateRobot = STATE_TOURNE_DROITE_EN_COURS;
             break;
 
@@ -131,7 +131,7 @@ void OperatingSystemLoop(void) {
 
         case STATE_FROLEMENT_GAUCHE:
             PWMSetSpeedConsigne(MOTEUR_DROITE, 0);
-            PWMSetSpeedConsigne(MOTEUR_GAUCHE, 10);
+            PWMSetSpeedConsigne(MOTEUR_GAUCHE, 12);
             stateRobot = STATE_FROLEMENT_GAUCHE_EN_COURS;
             break;
 
@@ -140,7 +140,7 @@ void OperatingSystemLoop(void) {
             break;
 
         case STATE_FROLEMENT_DROITE:
-            PWMSetSpeedConsigne(MOTEUR_DROITE, 10);
+            PWMSetSpeedConsigne(MOTEUR_DROITE, 12);
             PWMSetSpeedConsigne(MOTEUR_GAUCHE, 0);
             stateRobot = STATE_FROLEMENT_DROITE_EN_COURS;
             break;
