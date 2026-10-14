@@ -20,5 +20,17 @@ namespace RobotInterface_meh_diop
         {
             InitializeComponent();
         }
+
+        private void buttonEnvoyer_Click(object sender, RoutedEventArgs e)
+        {
+            buttonEnvoyer.Background = Brushes.Beige;
+            textBoxReception.Text = "Recu : " + textBoxEmission.Text;
+            //textBoxReception.Text = textBoxEmission.Text;
+            //textBoxEmission.Clear();
+            //return; en faite ca change rien 
+           
+            KeyEventHandler textBoxEmission.KeyUp;
+
+        }
     }
 }
